@@ -1,0 +1,17 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Mac/Windows junk
+.DS_Store
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Java / Spring
+backend/target/
+
+# Logs
+*.log
+
