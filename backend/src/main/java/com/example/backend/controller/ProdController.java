@@ -3,10 +3,10 @@ package com.example.backend.controller;
 import com.example.backend.model.Prod;
 import com.example.backend.service.ProdService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -20,13 +20,13 @@ public class ProdController {
         this.service = service;
     }
 
-    @RequestMapping("/")
-    public void one(){
-        System.out.println("Hello from akash!");
+    @GetMapping("/products")
+    public ResponseEntity<List<Prod>> getAllProd(){
+         return new ResponseEntity<>(service.getAllProd(), HttpStatus.OK);
     }
 
-    @GetMapping("/products")
-    public List<Prod> getAllProd(){
-         return service.getAllProd();
+    @GetMapping("/product/{id}")
+    public Prod getProd(@PathVariable int id){
+        return service.getProdById(id);
     }
 }
