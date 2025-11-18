@@ -17,5 +17,9 @@ public class ProdService {
     public List<Prod> getAllProd(){
          return repo.findAll();
     }
+    public Prod getProdById(int id){
+        return repo.findById(id).orElse(new Prod());
+
+    }
 
 }
