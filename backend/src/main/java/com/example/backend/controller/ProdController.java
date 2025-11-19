@@ -13,7 +13,7 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/api")
 public class ProdController {
-    private ProdService service;
+    private final ProdService service;
 
     @Autowired
     ProdController(ProdService service){
@@ -25,7 +25,7 @@ public class ProdController {
          return new ResponseEntity<>(service.getAllProd(), HttpStatus.OK);
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/products/{id}")
     public ResponseEntity<Prod> getProd(@PathVariable int id){
 
         Prod prod = service.getProdById(id);
