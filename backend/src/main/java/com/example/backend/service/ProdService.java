@@ -4,6 +4,9 @@ import com.example.backend.model.Prod;
 import com.example.backend.repo.ProdRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -20,6 +23,12 @@ public class ProdService {
     public Prod getProdById(int id){
         return repo.findById(id).orElse(new Prod());
 
+    }
+    public Prod addProd(Prod prod, MultipartFile file) throws IOException {
+        prod.setImageName(file.getOriginalFilename());
+        prod.setImageType(file.getContentType());
+        prod.setImageDate(file.getBytes());
+        return repo.save(prod);
     }
 
 }
