@@ -24,10 +24,10 @@ public class ProdService {
         return repo.findById(id).orElse(new Prod());
 
     }
-    public Prod addProd(Prod prod, MultipartFile file) throws IOException {
-        prod.setImageName(file.getOriginalFilename());
-        prod.setImageType(file.getContentType());
-        prod.setImageDate(file.getBytes());
+    public Prod addProd(Prod prod, MultipartFile imageFile) throws IOException {
+        prod.setImageName(imageFile.getOriginalFilename());
+        prod.setImageType(imageFile.getContentType());
+        prod.setImageDate(imageFile.getBytes());
         return repo.save(prod);
     }
 
